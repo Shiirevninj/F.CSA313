@@ -1,8 +1,4 @@
-# k6
-Lab2/results/*.log
 
-# Playwright trace extracted folders
-Lab1/docs/*-trace/
 # Playwright
 node_modules/
 /test-results/
