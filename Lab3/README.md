@@ -98,3 +98,15 @@ Reliability-ийн хувьд /pay error rate < 8% байх ёстой байс�
 120 секунд × 10% = 12 секунд.
 
 Харин request-based хэмжилтээр 5715 хүсэлтээс 857 нь амжилтгүй болсон тул бодит success rate 85.00% байна. Time-based error budget болон request-based availability нь ижил хэмжигдэхүүн биш учраас серверийг ойролцоогоор 10 секунд зогсоосон ч хүсэлтийн тархалт болон тухайн үеийн алдаанаас шалтгаалан request-based availability 90%-иас доош орж болно.
+## Intentional FAIL тест
+
+Threshold ажиллаж байгааг баталгаажуулахын тулд `/report` endpoint-ийн p95 босгыг зориуд 450 ms-ээс 100 ms болгон бууруулж `slo-test-fail.js` файлаар тест ажиллуулсан.
+
+| Үзүүлэлт | Threshold | Бодит үр дүн | Төлөв |
+|---|---|---|---|
+| Checks success rate | > 90% | 98.49% | PASS |
+| `/cart/add` p95 latency | < 200 ms | 2.78 ms | PASS |
+| `/report` p95 latency | < 100 ms | 390.1 ms | FAIL |
+| `/pay` error rate | < 8% | 4.52% | PASS |
+
+`/report` endpoint-ийн p95 хариу хугацаа 390.1 ms гарсан нь зориуд тавьсан 100 ms босгоос их байсан тул threshold FAIL болсон. k6 тест `exit=99` кодтой дууссан. Энэ нь threshold зөрчигдсөн үед k6 тестийг амжилтгүй гэж тэмдэглэж байгааг харуулж байна.
