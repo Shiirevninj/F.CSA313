@@ -160,4 +160,27 @@ class GradeCalculatorTest {
         // Assert
         assertEquals(expected, total);
     }
+    @ParameterizedTest
+    @CsvSource({
+            "95, A",
+            "90, A",
+            "89.99, B",
+            "80, B",
+            "70, C",
+            "60, D",
+            "59.99, F",
+            "0, F",
+            "100, A"
+    })
+    @DisplayName("Хязгаарын оноонуудыг зөв үсгэн дүнд хөрвүүлэх ёстой")
+    void letterGradeBoundaries(double score, String expected) {
+        // Arrange
+        GradeCalculator calc = new GradeCalculator();
+
+        // Act
+        String grade = calc.letterGrade(score);
+
+        // Assert
+        assertEquals(expected, grade);
+    }
 }
