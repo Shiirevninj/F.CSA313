@@ -1,0 +1,114 @@
+{
+  "info": {
+    "_postman_id": "9f5638bf-0702-4826-b36f-a1a658ed8ad8",
+    "name": "Lab05 API System Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44605473",
+    "_collection_link": "https://go.postman.co/collection/44605473-9f5638bf-0702-4826-b36f-a1a658ed8ad8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "01 - Setup Active Student",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"active\",\n  \"coursesTaken\": [\"CS201\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/students/B231234567",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "students",
+            "B231234567"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "02 - Setup CS313 Course",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prerequisites\": [\"CS201\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/courses/CS313",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "courses",
+            "CS313"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "03 - Happy Path Registration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n});\n\npm.test(\"Result is OK\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData.result).to.eql(\"OK\");\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentID\": \"B231234567\",\n  \"courseID\": \"CS313\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/registrations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "registrations"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
