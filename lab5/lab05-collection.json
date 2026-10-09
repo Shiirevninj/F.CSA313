@@ -21,18 +21,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/students/B231234567",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "B231234567"
-          ]
-        }
+        "url": "{{baseUrl}}/students/B231234567"
       },
       "response": []
     },
@@ -50,18 +39,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/courses/CS313",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "courses",
-            "CS313"
-          ]
-        }
+        "url": "{{baseUrl}}/courses/CS313"
       },
       "response": []
     },
@@ -90,17 +68,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/registrations",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "registrations"
-          ]
-        }
+        "url": "{{baseUrl}}/registrations"
       },
       "response": []
     },
@@ -118,18 +86,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/students/B230000002",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "B230000002"
-          ]
-        }
+        "url": "{{baseUrl}}/students/B230000002"
       },
       "response": []
     },
@@ -147,18 +104,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/courses/CS314",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "courses",
-            "CS314"
-          ]
-        }
+        "url": "{{baseUrl}}/courses/CS314"
       },
       "response": []
     },
@@ -187,17 +133,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/registrations",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "registrations"
-          ]
-        }
+        "url": "{{baseUrl}}/registrations"
       },
       "response": []
     },
@@ -215,18 +151,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/courses/CS315",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "courses",
-            "CS315"
-          ]
-        }
+        "url": "{{baseUrl}}/courses/CS315"
       },
       "response": []
     },
@@ -255,17 +180,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/registrations",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "registrations"
-          ]
-        }
+        "url": "{{baseUrl}}/registrations"
       },
       "response": []
     },
@@ -283,18 +198,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/students/B230000004",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "B230000004"
-          ]
-        }
+        "url": "{{baseUrl}}/students/B230000004"
       },
       "response": []
     },
@@ -323,17 +227,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/registrations",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "registrations"
-          ]
-        }
+        "url": "{{baseUrl}}/registrations"
       },
       "response": []
     },
@@ -351,18 +245,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/students/B230000005",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "students",
-            "B230000005"
-          ]
-        }
+        "url": "{{baseUrl}}/students/B230000005"
       },
       "response": []
     },
@@ -380,18 +263,7 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/courses/CS316",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "courses",
-            "CS316"
-          ]
-        }
+        "url": "{{baseUrl}}/courses/CS316"
       },
       "response": []
     },
@@ -420,17 +292,166 @@
             }
           }
         },
-        "url": {
-          "raw": "http://localhost:3000/registrations",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "registrations"
-          ]
+        "url": "{{baseUrl}}/registrations"
+      },
+      "response": []
+    },
+    {
+      "name": "14 - Setup Student for No Prerequisite Test",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"active\",\n  \"coursesTaken\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/students/B230000006"
+      },
+      "response": []
+    },
+    {
+      "name": "15 - Setup Course for No Prerequisite Test",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prerequisites\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/courses/CS317"
+      },
+      "response": []
+    },
+    {
+      "name": "16 - No Prerequisite Registration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 201\", function () {\n    pm.response.to.have.status(201);\n});\n\npm.test(\"Result is OK\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData.result).to.eql(\"OK\");\n});"
+            ]
+          }
         }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentID\": \"B230000006\",\n  \"courseID\": \"CS317\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/registrations"
+      },
+      "response": []
+    },
+    {
+      "name": "17 - Setup Course for Missing StudentID Test",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"prerequisites\": []\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/courses/CS318"
+      },
+      "response": []
+    },
+    {
+      "name": "18 - Missing StudentID Registration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 400\", function () {\n    pm.response.to.have.status(400);\n});\n\npm.test(\"Result is ERROR_BAD_REQUEST\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData.result).to.eql(\"ERROR_BAD_REQUEST\");\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"courseID\": \"CS318\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/registrations"
+      },
+      "response": []
+    },
+    {
+      "name": "19 - Setup Inactive Student for Double Error",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"inactive\",\n  \"coursesTaken\": [\"CS201\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/students/B230000008"
+      },
+      "response": []
+    },
+    {
+      "name": "20 - Double Error Registration",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\n    pm.response.to.have.status(200);\n});\n\npm.test(\"Result is ERROR_INACTIVE_STUDENT\", function () {\n    const jsonData = pm.response.json();\n    pm.expect(jsonData.result).to.eql(\"ERROR_INACTIVE_STUDENT\");\n});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentID\": \"B230000008\",\n  \"courseID\": \"CS998\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/registrations"
       },
       "response": []
     }
@@ -438,7 +459,8 @@
   "variable": [
     {
       "key": "baseUrl",
-      "value": ""
+      "value": "http://localhost:3000",
+      "type": "string"
     }
   ]
 }
