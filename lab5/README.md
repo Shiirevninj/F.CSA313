@@ -1,4 +1,3 @@
-cat > README.md <<'EOF'
 # Лаборатори №5 — API System Testing (Postman & Newman)
 
 **Оюутны нэр:** Шийрэвнинж  
