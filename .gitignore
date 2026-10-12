@@ -12,3 +12,5 @@ node_modules/
 /playwright/.auth/
 .idea/
 .DS_Store
+pict/
+build/
