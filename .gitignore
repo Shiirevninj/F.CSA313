@@ -14,3 +14,7 @@ node_modules/
 .DS_Store
 pict/
 build/
+
+target/
+.idea/
+.DS_Store
