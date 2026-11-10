@@ -5,6 +5,31 @@
 **Оюутны код:** B232270049  
 **Хичээл:** F.CSA313 
 
+
+## Туршилтын орчин
+
+### Java хувилбар
+
+Команд: `java -version`
+
+```text
+openjdk version "21.0.11" 2026-04-21
+OpenJDK Runtime Environment (build 21.0.11+10-1-deb13u2-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.11+10-1-deb13u2-Debian, mixed mode, sharing)
+```
+
+### Maven хувилбар
+
+Команд: `mvn -version`
+
+```text
+Apache Maven 3.9.9
+Maven home: /usr/share/maven
+Java version: 21.0.11, vendor: Debian, runtime: /usr/lib/jvm/java-21-openjdk-amd64
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "6.12.85+deb13-amd64", arch: "amd64", family: "unix"
+```
+
 ## Хэсэг A — Happy path тест ба анхны хамралт
 
 ScholarshipCalculator классын гурван функцийг шалгах
@@ -31,6 +56,11 @@ JaCoCo тайлангаас харахад хэвийн оролтын тест�
 
 Дараагийн хэсэгт нэмэлт тестүүд бичиж Line болон
 Branch хамралтыг 100% хүргэнэ.
+
+### Нотолгоо
+
+- `results/mvn-verify-A.txt`
+- `results/jacoco-A.csv`
 
 ## Хэсэг B — Code Coverage 100% болгох
 
@@ -115,3 +145,10 @@ Branch хамралтыг 100% хүргэнэ.
 ### Дүгнэлт
 
 Кодын хамралт 100% байх нь программ алдаагүй гэсэн баталгаа биш юм. Хэсэг B-д бүх мөр болон салаалалт хамрагдсан боловч 60 онооны хилийн утгыг тусгайлан шалгаагүй учраас логик алдаа илрээгүй. Хэсэг D-д Boundary Value Testing ашигласнаар уг алдааг илрүүлж чадсан. `>` операторыг `>=` болгон зассаны дараа бүх 32 тест амжилттай ажилласан. Иймээс Code Coverage болон Boundary Value Testing аргуудыг хамтад нь ашиглах нь программын чанарыг илүү найдвартай шалгахад чухал ач холбогдолтой.
+
+## Төслийг ажиллуулах
+
+Төслийн `lab9` хавтсанд дараах командыг ажиллуулна.
+
+```bash
+mvn clean verify
