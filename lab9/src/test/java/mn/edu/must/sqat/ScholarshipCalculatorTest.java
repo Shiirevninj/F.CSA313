@@ -146,6 +146,38 @@ class ScholarshipCalculatorTest {
         assertEquals(2.5, calculator.gpa(scores), 0.001);
     }
 
+    @Test
+    void testLetterGradeBoundary60() {
+        assertEquals("D", calculator.letterGrade(60));
+    }
 
+    @Test
+    void testLetterGradeBoundary59_99() {
+        assertEquals("F", calculator.letterGrade(59.99));
+    }
 
+    @Test
+    void testLetterGradeBoundary69_99() {
+        assertEquals("D", calculator.letterGrade(69.99));
+    }
+
+    @Test
+    void testLetterGradeBoundary0() {
+        assertEquals("F", calculator.letterGrade(0));
+    }
+
+    @Test
+    void testLetterGradeBoundary100() {
+        assertEquals("A", calculator.letterGrade(100));
+    }
+
+    @Test
+    void testLetterGradeBoundary89_99() {
+        assertEquals("B", calculator.letterGrade(89.99));
+    }
+
+    @Test
+    void testLetterGradeBoundary90() {
+        assertEquals("A", calculator.letterGrade(90));
+    }
 }
