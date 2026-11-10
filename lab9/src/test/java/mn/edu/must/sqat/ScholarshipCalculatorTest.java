@@ -134,6 +134,18 @@ class ScholarshipCalculatorTest {
         assertEquals(0, calculator.scholarship(2.5, 15, false));
     }
 
+    @Test
+    void testGpaSingleElement() {
+        double[] scores = {95};
+        assertEquals(4.0, calculator.gpa(scores), 0.001);
+    }
+
+    @Test
+    void testGpaMultipleElements() {
+        double[] scores = {95, 85, 75, 65};
+        assertEquals(2.5, calculator.gpa(scores), 0.001);
+    }
+
 
 
 }
