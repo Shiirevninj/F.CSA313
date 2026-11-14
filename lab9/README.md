@@ -138,9 +138,9 @@ Branch хамралтыг 100% хүргэнэ.
 
 ### Нотолгоо
 
-- `results/mvn-test-D-fail.txt`
-- `results/mvn-verify-D.txt`
-- `results/jacoco-D.csv`
+- `results/mvn-test-D-fail.txt` — Алдаа засахаас өмнөх тестийн үр дүн (32 тест, 1 FAIL).
+- `results/mvn-verify-final.txt` — Алдаа зассаны дараах Maven-ийн эцсийн үр дүн (32 тест, 0 FAIL, BUILD SUCCESS).
+- `results/jacoco-final.csv` — Эцсийн JaCoCo тайлан (Line, Branch, Instruction Coverage 100%).
 
 ### Дүгнэлт
 
