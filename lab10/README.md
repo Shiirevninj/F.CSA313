@@ -183,6 +183,37 @@ CFG-ийн эх файл: `cfg-bonus.dot`
 баруун талд ашиглагдана.
 
 
+
+### B3.1. best хувьсагчийн биелэшгүй DU хосууд
+
+**1. best: 37 → 42(F)**
+
+37-р мөрд `best = 0` гэж анхны утга онооно.
+
+42-р мөрд анх удаа хүрэхэд 41-р мөрийн `streak = streak + 1` үйлдлээр `streak = 1` болсон байна.
+
+Иймээс `streak > best` буюу `1 > 0` нөхцөл TRUE болно.
+
+42-р мөрийн FALSE салаанд хүрэхийн тулд өмнө нь `best` нэмэгдсэн байх шаардлагатай. Гэвч энэ үед 43-р мөрд `best` дахин тодорхойлогдсон байх тул 37-р мөрийн definition-ээс 42(F) хүртэл def-clear зам байхгүй.
+
+Дүгнэлт: 37 → 42(F) нь биелэшгүй DU хос.
+
+**2. best: 37 → 53(T)**
+
+37-р мөрд `best = 0` гэж анхны утга онооно.
+
+Хэрэв 37-р мөрийн definition 53-р мөр хүртэл хадгалагдсан бол `best = 0` хэвээр байна.
+
+Иймээс `best >= 5` буюу `0 >= 5` нөхцөл FALSE болно.
+
+53-р мөрийн TRUE салаанд хүрэхийн тулд `best >= 5` байх шаардлагатай. Энэ нь 43-р мөрийн `best = streak` үйлдлээр best дахин тодорхойлогдсон үед л боломжтой.
+
+Тиймээс 37-р мөрийн definition-ээс 53(T) хүртэл def-clear зам байхгүй.
+
+Дүгнэлт: 37 → 53(T) нь биелэшгүй DU хос.
+
+Эдгээр хосууд нь биелэшгүй тул All-DU-pairs coverage-ийн боломжтой хосуудын тоонд оруулахгүй.
+
 ### B4. All-defs ба all-DU шатны үр дүн
 
 | Үзүүлэлт | All-defs | All-DU |
@@ -207,6 +238,66 @@ DU-pairs хамралтыг def-clear зам болон
 JUnit тестүүдээр тусад нь шинжилсэн.
 
 
+### B4.1. All-defs шалгуурын хамгийн бага тестийн багц
+
+All-defs шалгуур нь хувьсагчийн definition бүрээс дор хаяж нэг боломжтой use хүртэл def-clear замыг хамруулахыг шаарддаг.
+
+`bonus()` функцийн All-defs-д хамгийн багадаа 2 тест хангалттай:
+
+1. `bonusPreservesBestStreak()` (B7)
+2. `bonusOnlyStreakPoints()` (B8)
+
+B7 тест нь attendance, threshold, a, present, streak, best болон score хувьсагчдын ихэнх definition-ийг хамруулна. Тухайлбал, 46-р мөрийн `streak = 0` definition-ээс дараагийн давталтын 41-р мөрийн use хүртэлх замыг хамруулдаг.
+
+B8 тест нь `present < threshold`, `best >= 5` нөхцөлөөр дамжин `score` хувьсагчийн 49→54 def-clear замыг хамруулна.
+
+
+**Хамгийн бага багц болох үндэслэл:**
+
+All-defs шалгуурын дагуу хувьсагчийн definition бүрээс дор хаяж нэг боломжтой use хүртэл def-clear замыг хамруулах шаардлагатай.
+
+`score` хувьсагчийн 49-р мөрийн `score = 0` definition нь дараах хоёр боломжтой use-тэй:
+
+- 49 → 54: `present < threshold`, `best >= 5`
+- 49 → 56: `present < threshold`, `best < 5`
+
+Харин 51-р мөрийн `score = 5` definition-ийг хамруулахын тулд `present >= threshold` үнэн байх шаардлагатай.
+
+Нэг удаагийн `bonus()` дуудлагад `present >= threshold` нөхцөл зэрэг үнэн, худал байж чадахгүй. Иймээс 49 болон 51-р мөрийн definition-үүдийг нэг тестээр хоёуланг нь def-clear use хүртэл хамруулах боломжгүй.
+
+Тиймээс All-defs-д дор хаяж 2 тест шаардлагатай.
+
+**Сонгосон хамгийн бага багц:**
+
+- B7 `bonusPreservesBestStreak()` — 51 → 54, 54 → 56 болон бусад definition-үүдийг хамруулна.
+- B8 `bonusOnlyStreakPoints()` — 49 → 54 замыг хамруулна.
+
+B7 нь 46-р мөрийн `streak = 0` definition-ээс дараагийн давталтын 41-р мөрийн use хүртэлх замыг мөн хамруулдаг.
+
+Иймээс B7, B8 хоёр тест бүх боломжтой definition-д дор хаяж нэг def-clear use-ийг хамруулж, All-defs-ийн хамгийн бага багцыг бүрдүүлнэ.
+
+Өмнөх 9 тест нь All-defs шатанд ажиллуулсан нийт тестийн тоо болохоос хамгийн бага багцын хэмжээ биш юм.
+
+
+### B4.2. Branch Coverage 100% боловч DU хос дутуу байх боломж
+
+Branch Coverage нь нөхцөл бүрийн True болон False салаа ажилласан эсэхийг хэмждэг. Харин DU Coverage нь хувьсагчийн Definition цэгээс Use цэг хүртэл def-clear замаар хүрсэн эсэхийг шалгадаг.
+
+Бодит жишээ: `present` хувьсагчийн 35 → 50(F) DU хос.
+
+35-р мөрд `present = 0` гэж тодорхойлогдож, 50-р мөрд `present >= threshold` нөхцөлд ашиглагдана.
+
+`bonus(new int[]{1, 0}, 3)` тест нь 50-р мөрийн False салааг хамарна. Гэвч 40-р мөрд `present` дахин тодорхойлогдсон тул 35 → 50(F) DU хосыг хамрахгүй.
+
+Харин `bonus(new int[]{}, 1)` тест нь давталтад орохгүй, `present = 0` утгыг өөрчлөхгүйгээр 50-р мөрийн False салаанд хүрнэ. Ингэснээр 35 → 50(F) DU хос хамрагдана.
+
+Иймээс бүх салаа хамрагдсан байсан ч тодорхой DU хос хамрагдаагүй байж болно.
+
+Манай лабораторид `bonusEmptyBelowThreshold()` тестээр 35 → 50(F) DU хосыг нэмж хамруулсан.
+
+JaCoCo-ийн 100% Branch Coverage нь 100% All-DU-pairs Coverage гэсэн баталгаа биш.
+
+
 ## C. Mutation Testing
 
 ### C1. Туршилтын зорилго
@@ -222,27 +313,65 @@ Mutation Testing нь эх кодод зориудаар жижиг өөрчлө
 | M2-kill | M2-д зориулсан шинэ тест нэмсэн | 13 тестээс 1 нь алдаа илрүүлсэн | KILLED |
 | M3 | `int total = present + best;` мөр нэмсэн | 13 тест бүгд давсан | SURVIVED |
 
+
 ### C3. M1 — Дараалсан ирцийн тооцооллын алдаа
 
-`streak = streak + 1` мөрийг устгахад дараах тестүүд алдаа илрүүлсэн:
+M1 mutation-д `streak = streak + 1` мөрийг устгасан.
 
-- `bonusFiveConsecutive`
-- `bonusPreservesBestStreak`
-- `bonusOnlyStreakPoints`
+`results/mvn-test-M1.txt` файлаас авсан бодит алдаанууд:
 
-Иймээс M1 mutant-ийг KILLED гэж дүгнэсэн.
+| Тест | Expected | Was |
+|---|---|---|
+| bonusFiveConsecutive | 8 | 5 |
+| bonusPreservesBestStreak | 8 | 5 |
+| bonusOnlyStreakPoints | 3 | 0 |
+
+Maven-ийн алдааны мөрүүд:
+
+```text
+BonusTest.bonusFiveConsecutive:26 expected: <8> but was: <5>
+BonusTest.bonusPreservesBestStreak:58 expected: <8> but was: <5>
+BonusTest.bonusOnlyStreakPoints:68 expected: <3> but was: <0>
+Tests run: 12, Failures: 3, Errors: 0
+BUILD FAILURE
+```
+
+`streak` нэмэгдэхгүй болсон тул дараалсан ирцийн урамшууллын 3 оноо тооцогдоогүй. Иймээс M1 нь KILLED.
 
 ### C4. M2 — Хамгийн урт дарааллыг буруу тооцох
 
-`best = present` өөрчлөлтийг эхний 12 тест илрүүлээгүй.
+M2 mutation-д `best = streak` мөрийг `best = present` болгосон.
 
-Үүнийг илрүүлэхийн тулд `bonusDetectsIncorrectBest()` тест нэмсэн.
+Эхний 12 тест M2 алдааг илрүүлээгүй. Учир нь дараалсан 5 ирцтэй тохиолдлуудад `present` болон `streak` ижил байсан. Харин холимог ирцтэй тохиолдлуудад `best` буруу тооцогдсон ч `best >= 5` нөхцөлийн үр дүн өөрчлөгдөөгүй.
 
-Оролт: `[1, 1, 0, 1, 1, 1]`, threshold = 6.
+Иймээс M2 нь эхний 12 тест дээр SURVIVED.
 
-Зөв код 0 оноо буцаах боловч M2 алдаатай код 3 оноо буцаасан.
+Алдааг илрүүлэхийн тулд B10 `bonusDetectsIncorrectBest()` тестийг нэмсэн.
 
-Шинэ тест алдааг илрүүлсэн тул M2 mutant KILLED болсон.
+Оролт:
+- attendance = [1, 1, 0, 1, 1, 1]
+- threshold = 6
+
+Зөв код:
+- present = 5
+- best = 3
+- score = 0
+
+M2 алдаатай код:
+- present = 5
+- best = 5
+- score = 3
+
+`results/mvn-test-M2-kill.txt` файлаас авсан бодит гаралт:
+
+```text
+BonusTest.bonusDetectsIncorrectBest:81 expected: <0> but was: <3>
+Tests run: 13, Failures: 1, Errors: 0
+BUILD FAILURE
+```
+
+B10 тест M2 алдааг илрүүлсэн тул M2 нь KILLED болсон.
+
 
 ### C5. M3 — Ашиглагдахгүй хувьсагч
 
